@@ -1,20 +1,20 @@
-function add(a, b) {
-  return a + b;
+function mul(a, b) {
+  return a * b;
 }
 
 const myObject = {
-  name: "Nilak",
+  name: "Nilaksh",
   age: 25,
-  greet: function() {
-    return `Hello, ${this.name}!`;
+  hello: function() {
+    return `Hello ${this.name}`;
   },
   math: {
-    add,
+    mul,
     subtract: (a, b) => a - b
   }
 };
 
 module.exports = {
-  add,
-  myObject
+  mul,
+  myObject,
 };

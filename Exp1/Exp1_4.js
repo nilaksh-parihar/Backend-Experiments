@@ -1,20 +1,20 @@
 const http = require('http');
-const fs = require('fs');
+const file = require('fs');
 
-const server = http.createServer((req, res) => {
-  fs.readFile('sample.txt', 'utf8', (err, data) => {
-    if (err) {
-      if (err.code === 'ENOENT') {
-        res.writeHead(404, { 'Content-Type': 'text/plain' });
-        res.end('Error: File not found.');
+const server = http.createServer((request, response) => {
+  file.readFile('sample.txt', 'utf8', (error, data) => {
+    if (error) {
+      if (error.code === 'ENOENT') {
+        response.writeHead(404, { 'Content-Type': 'text/plain' });
+        response.end('Error: File not found.');
       } else {
-        res.writeHead(500, { 'Content-Type': 'text/plain' });
-        res.end('Error reading file.');
+        response.writeHead(500, { 'Content-Type': 'text/plain' });
+        response.end('Error reading file.');
       }
       return;
     }
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end(data);
+    response.writeHead(200, { 'Content-Type': 'text/plain' });
+    response.end(data);
   });
 });
 
